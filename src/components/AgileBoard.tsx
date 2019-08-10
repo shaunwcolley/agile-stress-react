@@ -64,6 +64,19 @@ const AgileBoard: React.FC<IProps> = (props) => {
   let taskOptions: any[] = optionsGenerate(board)
 
 
+  setTimeout(() => {
+    const choices = ['make register page', 'register styling', 'register functionality', 'make backend userAuth']
+    const categories = ['stories','todo','doing','qa','done']
+    const min = 0
+    const max = choices.length-1
+    const random = Math.floor(Math.random() * max) + min;
+    const choice = choices[random]
+    const randomCat = Math.floor(Math.random() * 4) + 0;
+    const cat = categories[randomCat]
+    //logging random choice, now need to push choice into category on setBoard function
+    console.log(cat + ' : ' + choice)
+  },3000)
+
   return (
     <React.Fragment>
     <div>

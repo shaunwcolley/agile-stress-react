@@ -5,6 +5,7 @@
 
 .agile-column {
   margin: 1rem;
+  width: 175px;
 }
 
 .agile-column--heading {
@@ -16,5 +17,4 @@
 .agile-column--tasks {
   border: solid;
   min-height: 200px;
-  min-width: 30px;
 }
