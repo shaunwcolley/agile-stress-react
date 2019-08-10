@@ -1,0 +1,19 @@
+.agile-board {
+  display: flex;
+  justify-content: space-between;
+}
+
+.agile-column {
+  margin: 1rem;
+}
+
+.agile-column--heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.agile-column--tasks {
+  border: solid;
+  min-height: 50px;
+}
