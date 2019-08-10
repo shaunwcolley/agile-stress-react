@@ -5,6 +5,14 @@ interface IProps {
 
 }
 
+let initialBoard: { [key: string]: string[] } = {
+  stories: ['As a user I want to be able to login'],
+  todo: ['make login', 'login styling'],
+  doing: [],
+  qa: [],
+  done: []
+}
+
 const AgileBoard: React.FC<IProps> = (props) => {
 
   const onDragStart = (e: any, startCat: string, key: number) => {
@@ -19,30 +27,20 @@ const AgileBoard: React.FC<IProps> = (props) => {
   const onDrop = (e: any, dropCat: string) => {
     const startCat: string = e.dataTransfer.getData('startCat')
     const key: number = e.dataTransfer.getData('key')
-    // pulls task value from starting category
-    let task = board[startCat][key]
+    // pulls task values from starting and ending categories
+    let startTasks = board[startCat]
+    let dropTasks = board[dropCat]
     // pushs task into new category
-    board[dropCat].push(task)
+    let task = board[startCat][key]
+    dropTasks.push(task)
     //removes from starting category
-    board[startCat].splice(key,1)
-    console.log(board)
+    startTasks.splice(key,1)
+    // sets state with updated values
+    setBoard({...board, [startCat]: startTasks, [dropCat]: dropTasks})
   }
 
-  // class Board {
-  //   stories: string[];
-  //   todo: string[];
-  //   doing: string[];
-  //   qa: string[];
-  //   done: string[]
-  // }
+  const [board, setBoard] = React.useState(initialBoard);
 
-  let board: { [key: string]: string[] } = {
-    stories: ['As a user I want to be able to login'],
-    todo: ['make login', 'login styling'],
-    doing: [],
-    qa: [],
-    done: []
-  }
   const taskCreate = (columnName: string, column: string[]) => {
    return column.map((task: string, index: number) => {
      return <div key={index} draggable onDragStart={(e) => onDragStart(e, columnName, index)}>{task}</div>
@@ -57,7 +55,7 @@ const AgileBoard: React.FC<IProps> = (props) => {
   const optionsGenerate = (object: {[key: string]: string[] }) => {
     let options: any[] = []
     for(let key in object) {
-      let option = <option value={key}>{key.toUpperCase()}</option>
+      let option = <option key={key} value={key}>{key.toUpperCase()}</option>
       options.push(option)
     }
     return options

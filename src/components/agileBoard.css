@@ -15,5 +15,6 @@
 
 .agile-column--tasks {
   border: solid;
-  min-height: 50px;
+  min-height: 200px;
+  min-width: 30px;
 }
