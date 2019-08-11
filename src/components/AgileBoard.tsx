@@ -43,7 +43,7 @@ const AgileBoard: React.FC<IProps> = (props) => {
 
   const taskCreate = (columnName: string, column: string[]) => {
    return column.map((task: string, index: number) => {
-     return <div key={index} draggable onDragStart={(e) => onDragStart(e, columnName, index)}>{task}</div>
+     return <div className="ticket" key={index} draggable onDragStart={(e) => onDragStart(e, columnName, index)}>{task}</div>
    })
   }
   let stories = taskCreate('stories', board.stories)
@@ -52,38 +52,31 @@ const AgileBoard: React.FC<IProps> = (props) => {
   let qa = taskCreate('qa', board.qa)
   let done = taskCreate('done', board.done)
 
-  const optionsGenerate = (object: {[key: string]: string[] }) => {
-    let options: any[] = []
-    for(let key in object) {
-      let option = <option key={key} value={key}>{key.toUpperCase()}</option>
-      options.push(option)
-    }
-    return options
-  }
 
-  let taskOptions: any[] = optionsGenerate(board)
-
-
-  setTimeout(() => {
+  const addTask = () => {
     const choices = ['make register page', 'register styling', 'register functionality', 'make backend userAuth']
     const categories = ['stories','todo','doing','qa','done']
-    const min = 0
     const max = choices.length-1
-    const random = Math.floor(Math.random() * max) + min;
+    const random = Math.floor(Math.random() * max);
     const choice = choices[random]
-    const randomCat = Math.floor(Math.random() * 4) + 0;
+    const randomCat = Math.floor(Math.random() * 4);
     const cat = categories[randomCat]
-    //logging random choice, now need to push choice into category on setBoard function
-    console.log(cat + ' : ' + choice)
-  },3000)
+    let newTasks = board[cat]
+    newTasks.push(choice)
+    setBoard({...board, [cat]: newTasks})
+  }
+
+  React.useEffect(() => {
+    const timer = setTimeout(()=> {
+      addTask()
+    }, 3000)
+    return () => clearTimeout(timer)
+    // Eslint disable, because code needs to not include dependency as second argument to only update once
+    // eslint-disable-next-line
+  }, [])
 
   return (
     <React.Fragment>
-    <div>
-      <select>
-        {taskOptions}
-      </select>
-    </div>
     <div className="agile-board">
       <div className="agile-column">
         <div className="agile-column--heading">
