@@ -1,26 +1,21 @@
-type State = {
-  timer: number;
-  score: number;
-  pause: boolean;
-}
+import * as actionTypes from '../actions/actionTypes';
+import { State } from '../../components/types'
 
-type Action =
-| { type: 'COUNT_DOWN' }
-| { type: 'ADD_POINTS' }
-| { type: 'GAME_START' }
-| { type: 'GAME_PAUSE' }
+type Action = { type: string, payload?: any }
 
 
 function reducer(state: State , action: Action) {
   switch(action.type) {
-    case 'COUNT_DOWN':
-      return { ...state, timer: state.timer - 1 };
-    case 'ADD_POINTS':
+    case actionTypes.COUNT_DOWN:
+      return { ...state, timer: state.timer - state.countSpeed };
+    case actionTypes.ADD_POINTS:
       return { ...state, timer: state.timer + 10, score: state.score + 100 }
-    case 'GAME_START':
+    case actionTypes.GAME_START:
       return { ...state, pause: false }
-    case 'GAME_PAUSE':
+    case actionTypes.GAME_PAUSE:
       return { ...state, pause: state.pause ? false : true}
+    case actionTypes.CHANGE_SPEED:
+      return { ...state, countSpeed: action.payload}
     default:
       throw new Error();
   }

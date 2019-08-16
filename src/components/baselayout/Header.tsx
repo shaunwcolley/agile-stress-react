@@ -1,11 +1,7 @@
 import * as React from 'react';
 import './Header.css';
-
-type State = {
-  timer: number,
-  score: number,
-  pause: boolean
-}
+import * as actionTypes from '../../state/actions/actionTypes'
+import { State } from '../types'
 
 interface IProps {
   state: State,
@@ -21,21 +17,25 @@ const Header: React.FC<IProps> = (props) => {
     if(!state.pause) {
       if(state.timer > 0) {
         const timer = setInterval(() => {
-          dispatch({type: 'COUNT_DOWN' })
+          dispatch({type: actionTypes.COUNT_DOWN })
         }, 1000)
         return () => clearInterval(timer)
       }
     }
   }, [state, dispatch])
 
+  const handleMenuClick = () => {
+    dispatch({ type: actionTypes.GAME_PAUSE })
+  }
+
   const header = (
     <React.Fragment>
     <div className="top-bar">
-      <div className="home-logo">
+      <div className="home-logo" onClick={() => handleMenuClick()}>
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
       </div>
       <span>Agile Stress!</span>
-      <div className="user-display">
+      <div className="user-display" onClick={() => handleMenuClick()}>
         <div className="user-character">
           S
         </div>
