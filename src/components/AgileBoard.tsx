@@ -2,7 +2,7 @@ import * as React from 'react';
 import './agileBoard.css';
 
 interface IProps {
-
+  dispatch: any
 }
 
 let initialBoard: { [key: string]: string[] } = {
@@ -14,6 +14,9 @@ let initialBoard: { [key: string]: string[] } = {
 }
 
 const AgileBoard: React.FC<IProps> = (props) => {
+
+  const { dispatch } = props;
+  const [board, setBoard] = React.useState(initialBoard);
 
   const onDragStart = (e: any, startCat: string, key: number) => {
     e.dataTransfer.setData('startCat', startCat)
@@ -35,17 +38,19 @@ const AgileBoard: React.FC<IProps> = (props) => {
     dropTasks.push(task)
     //removes from starting category
     startTasks.splice(key,1)
-    // sets state with updated values
+    // sets board with updated values
     setBoard({...board, [startCat]: startTasks, [dropCat]: dropTasks})
-  }
 
-  const [board, setBoard] = React.useState(initialBoard);
+    //sets state with updated score and time
+    dispatch({ type: 'ADD_POINTS'})
+  }
 
   const taskCreate = (columnName: string, column: string[]) => {
    return column.map((task: string, index: number) => {
      return <div className="ticket" key={index} draggable onDragStart={(e) => onDragStart(e, columnName, index)}>{task}</div>
    })
   }
+
   let stories = taskCreate('stories', board.stories)
   let todo = taskCreate('todo', board.todo)
   let doing = taskCreate('doing', board.doing)

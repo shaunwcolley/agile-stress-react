@@ -1,29 +1,32 @@
 import * as React from 'react';
-import './Header.css'
+import './Header.css';
 
-let initialStats: { [key: string]: number } = {
-  score: 0,
-  timer: 100,
+type State = {
+  timer: number,
+  score: number,
+  pause: boolean
 }
 
-const Header: React.FC = () => {
+interface IProps {
+  state: State,
+  dispatch: any
+}
 
-  const [stats, setStats] = React.useState(initialStats);
+const Header: React.FC<IProps> = (props) => {
 
-  const countDown = React.useCallback(() => {
-    let newTimer = stats.timer - 1;
-    setStats({...stats, timer: newTimer })
-  }, [stats])
+  const { state } = props;
+  const { dispatch } = props;
 
   React.useEffect(() => {
-
-    if(stats.timer > 0) {
-      const timer = setInterval(() => {
-        countDown()
-      }, 1000)
-      return () => clearInterval(timer)
+    if(!state.pause) {
+      if(state.timer > 0) {
+        const timer = setInterval(() => {
+          dispatch({type: 'COUNT_DOWN' })
+        }, 1000)
+        return () => clearInterval(timer)
+      }
     }
-  }, [countDown, stats.timer])
+  }, [state, dispatch])
 
   const header = (
     <React.Fragment>
@@ -43,16 +46,16 @@ const Header: React.FC = () => {
         Forum Web App
       </p>
       <p className="score">
-        Score: {stats.score}
+        Score: {state.score}
       </p>
       <p className="timer">
-        Timer: {stats.timer}
+        Timer: {state.timer}
       </p>
     </div>
     </React.Fragment>
   )
 
-  if(stats.timer === 0) {
+  if(state.timer === 0) {
     return (
       <div>
         {header}
