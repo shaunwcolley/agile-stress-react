@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './agileBoard.css';
-import { State, Ticket } from '../types';
+import { State, Ticket, Label } from '../types';
 import * as boardComponents from './constants/boardComponents';
 import { storyComposition } from './constants/storyComposition';
 import * as actionTypes from '../../state/actions/actionTypes'
@@ -13,8 +13,8 @@ interface IProps {
 let initialBoard: { [key: string]: Ticket[] } = {
   stories: [],
   todo: [
-    { title: 'make login', story: { name: 'register', color: '' }},
-    { title: 'login styling', story: { name: 'register', color: '' }}
+    { title: 'make login', story: { name: 'register', color: {backgroundColor: '#1650C0'} }},
+    { title: 'login styling', story: { name: 'register', color: {backgroundColor: '#1650C0'} }}
   ],
   doing: [],
   qa: [],
@@ -61,17 +61,25 @@ const AgileBoard: React.FC<IProps> = (props) => {
 
   const taskCreate = (columnName: string, column: string[] | any) => {
     if(columnName === 'stories') {
-      return column.map((task:string, index: number) => {
-        return <div className="ticket" key={index}>{task}</div>
+      return column.map((story: Label, index: number) => {
+        const { name, color } = story;
+        return  <div className="ticket" key={index}>
+                  <div>{name}</div>
+                  <div className="label" style={color}></div>
+                </div>
       })
     }
-    return column.map((task: Ticket, index: number) => {
-      return <div className="ticket" key={index} draggable onDragStart={(e) => onDragStart(e, columnName, index)}><div>{task.title}</div><div>{task.story}</div></div>
+    return column.map((task: Ticket | any, index: number) => {
+      const { story: {color} } = task
+      return  <div className="ticket" key={index} draggable onDragStart={(e) => onDragStart(e, columnName, index)}>
+                <div>{task.title}</div>
+                <div className="label" style={color}></div>
+              </div>
     })
   }
 
   const { score } = state;
-  const labels = boardComponents.labels.map(label => label.name)
+  const { labels } = boardComponents
   const labelChoices = storyComposition(score,labels)
 
   let storiesDisplay = taskCreate('stories', labelChoices)
@@ -91,7 +99,6 @@ const AgileBoard: React.FC<IProps> = (props) => {
     const label = labelChoices[randomLabel];
     const ticket = { title, story: label }
     let newTasks = board['todo'];
-    console.log(ticket)
     newTasks.push(ticket)
     setBoard({...board, todo: newTasks})
   }

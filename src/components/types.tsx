@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 export type State = {
   timer: number,
   score: number,
@@ -12,5 +14,5 @@ export type Ticket = {
 
 export type Label = {
   name: string,
-  color: string,
+  color: React.CSSProperties,
 }

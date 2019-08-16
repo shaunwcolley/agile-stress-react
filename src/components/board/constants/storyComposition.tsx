@@ -1,4 +1,6 @@
-export const storyComposition = (score: number, stories: string[]) => {
+import { Label } from '../../types';
+
+export const storyComposition = (score: number, stories: Label[]) => {
   if (score < 1000) {
     return stories.slice(0,1);
   }
@@ -15,4 +17,4 @@ export const storyComposition = (score: number, stories: string[]) => {
     return stories.slice(0,7)
   }
   return stories
-}
+};

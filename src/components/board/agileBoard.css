@@ -22,3 +22,7 @@
 .ticket {
   padding: .5rem;
 }
+.label {
+  width: 30px;
+  height: 20px;
+}
