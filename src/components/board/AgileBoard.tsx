@@ -1,9 +1,12 @@
 import * as React from 'react';
+import TicketTimer from './TicketTimer'
 import './agileBoard.css';
-import { State, Ticket, Label } from '../types';
+import { State, Ticket } from '../types';
 import * as boardComponents from './constants/boardComponents';
 import { storyComposition } from './constants/storyComposition';
-import * as actionTypes from '../../state/actions/actionTypes'
+import { addRandomTask } from './constants/addRandomTask';
+import { taskCreate } from './constants/taskCreate';
+import * as actionTypes from '../../state/actions/actionTypes';
 
 interface IProps {
   state: State,
@@ -59,53 +62,19 @@ const AgileBoard: React.FC<IProps> = (props) => {
     }
   }
 
-  const taskCreate = (columnName: string, column: string[] | any) => {
-    if(columnName === 'stories') {
-      return column.map((story: Label, index: number) => {
-        const { name, color } = story;
-        return  <div className="ticket" key={index}>
-                  <div>{name}</div>
-                  <div className="label" style={color}></div>
-                </div>
-      })
-    }
-    return column.map((task: Ticket | any, index: number) => {
-      const { story: {color} } = task
-      return  <div className="ticket" key={index} draggable onDragStart={(e) => onDragStart(e, columnName, index)}>
-                <div>{task.title}</div>
-                <div className="label" style={color}></div>
-              </div>
-    })
-  }
-
   const { score } = state;
   const { labels } = boardComponents
   const labelChoices = storyComposition(score,labels)
 
-  let storiesDisplay = taskCreate('stories', labelChoices)
-  let todo = taskCreate('todo', board.todo)
-  let doing = taskCreate('doing', board.doing)
-  let qa = taskCreate('qa', board.qa)
-  let done = taskCreate('done', board.done)
-
-
-  const addTask = () => {
-    const { choices, categories } = boardComponents;
-    const titleMax = choices.length-1;
-    const randomTitle = Math.floor(Math.random() * titleMax);
-    const title = choices[randomTitle];
-    const labelMax = labelChoices.length-1;
-    const randomLabel = Math.floor(Math.random() + labelMax);
-    const label = labelChoices[randomLabel];
-    const ticket = { title, story: label }
-    let newTasks = board['todo'];
-    newTasks.push(ticket)
-    setBoard({...board, todo: newTasks})
-  }
+  let storiesDisplay = taskCreate('stories', labelChoices, onDragStart, state)
+  let todo = taskCreate('todo', board.todo, onDragStart, state)
+  let doing = taskCreate('doing', board.doing, onDragStart, state)
+  let qa = taskCreate('qa', board.qa, onDragStart, state)
+  let done = taskCreate('done', board.done, onDragStart, state)
 
   React.useEffect(() => {
     const timer = setTimeout(()=> {
-      addTask()
+      addRandomTask(boardComponents, labelChoices, board, setBoard)
     }, 3000)
     return () => clearTimeout(timer)
     // Eslint disable, because code needs to not include dependency as second argument to only update once
