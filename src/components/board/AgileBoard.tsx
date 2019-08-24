@@ -31,7 +31,6 @@ const AgileBoard: React.FC<IProps> = (props) => {
   const onDragStart = (e: any, startCat: string, endCat: string, key: number) => {
     e.dataTransfer.setData('startCat', startCat)
     e.dataTransfer.setData('key', key)
-    console.log(endCat)
     if(endCat){
       e.dataTransfer.setData('endCat', endCat)
     }
@@ -45,7 +44,6 @@ const AgileBoard: React.FC<IProps> = (props) => {
     const startCat: string = e.dataTransfer.getData('startCat')
     const key: number = e.dataTransfer.getData('key')
     const endCat: string = e.dataTransfer.getData('endCat')
-    console.log(`dataTransfer end column: ${endCat}`)
     // pulls task values from starting and ending categories
     let startTasks = board[startCat]
     let dropTasks = board[dropCat]
@@ -63,6 +61,7 @@ const AgileBoard: React.FC<IProps> = (props) => {
       dispatch({ type: actionTypes.ADD_POINTS })
     }
     else {
+      console.log(`dropCat: ${dropCat} ?= endCat: ${endCat}`)
       console.log('SUB_POINTS')
       dispatch({ type: actionTypes.SUB_POINTS })
     }

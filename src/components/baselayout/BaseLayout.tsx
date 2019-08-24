@@ -13,7 +13,7 @@ import reducer from '../../state/store/reducer';
 
 let initialState: State = {
   timer: 100,
-  score: 4000,
+  score: 0,
   pause: true,
   countSpeed: 1
 }
