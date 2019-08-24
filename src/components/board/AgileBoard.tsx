@@ -1,5 +1,4 @@
 import * as React from 'react';
-import TicketTimer from './TicketTimer'
 import './agileBoard.css';
 import { State, Ticket } from '../types';
 import * as boardComponents from './constants/boardComponents';
@@ -29,9 +28,13 @@ const AgileBoard: React.FC<IProps> = (props) => {
   const { state, dispatch } = props;
   const [board, setBoard] = React.useState(initialBoard);
 
-  const onDragStart = (e: any, startCat: string, key: number) => {
+  const onDragStart = (e: any, startCat: string, endCat: string, key: number) => {
     e.dataTransfer.setData('startCat', startCat)
     e.dataTransfer.setData('key', key)
+    console.log(endCat)
+    if(endCat){
+      e.dataTransfer.setData('endCat', endCat)
+    }
   }
 
   const onDragOver = (e: any) => {
@@ -41,6 +44,8 @@ const AgileBoard: React.FC<IProps> = (props) => {
   const onDrop = (e: any, dropCat: string) => {
     const startCat: string = e.dataTransfer.getData('startCat')
     const key: number = e.dataTransfer.getData('key')
+    const endCat: string = e.dataTransfer.getData('endCat')
+    console.log(`dataTransfer end column: ${endCat}`)
     // pulls task values from starting and ending categories
     let startTasks = board[startCat]
     let dropTasks = board[dropCat]
@@ -50,10 +55,18 @@ const AgileBoard: React.FC<IProps> = (props) => {
     //removes from starting category
     startTasks.splice(key,1)
     // sets board with updated values
-    setBoard({...board, [startCat]: startTasks, [dropCat]: dropTasks})
+    setBoard({ ...board, [startCat]: startTasks, [dropCat]: dropTasks })
 
     //sets state with updated score and time
-    dispatch({ type: actionTypes.ADD_POINTS})
+    if(dropCat === endCat){
+      console.log('ADD_POINTS')
+      dispatch({ type: actionTypes.ADD_POINTS })
+    }
+    else {
+      console.log('SUB_POINTS')
+      dispatch({ type: actionTypes.SUB_POINTS })
+    }
+
 
     if(board.doing.length > 1) {
       dispatch( { type: actionTypes.CHANGE_SPEED, payload: board.doing.length * 2})

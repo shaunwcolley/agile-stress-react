@@ -10,6 +10,8 @@ function reducer(state: State , action: Action) {
       return { ...state, timer: state.timer - state.countSpeed };
     case actionTypes.ADD_POINTS:
       return { ...state, timer: state.timer + 10, score: state.score + 100 }
+    case actionTypes.SUB_POINTS:
+      return { ...state, timer: state.timer - 20, score: state.score - 50 }
     case actionTypes.GAME_START:
       return { ...state, pause: false }
     case actionTypes.GAME_PAUSE:
