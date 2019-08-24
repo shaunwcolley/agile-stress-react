@@ -9,7 +9,7 @@ export type State = {
 
 export type Ticket = {
   title: string,
-  story?: Label,
+  story?: Label | any,
 }
 
 export type Label = {
