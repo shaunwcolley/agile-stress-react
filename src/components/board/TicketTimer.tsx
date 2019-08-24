@@ -1,20 +1,32 @@
 import * as React from 'react';
+import { qaColumnResolve } from './constants/qaColumnResolve';
+
 import { State } from '../types';
 
 interface IProps {
   state: State,
-  column: string
+  column: string,
+  catCallback?: any,
 }
 
 const TicketTimer: React.FC<IProps> = props => {
-  const { state, column } = props
+  const { state, column, catCallback } = props
   let columnRef = React.useRef('...');
 
   React.useEffect(() => {
+    let returnColumn = '...'
+
     if(!state.pause && state.timer > 0){
-      console.log('fire')
+      if(column === 'qa') {
+        let endCat = qaColumnResolve()
+        returnColumn = endCat;
+        catCallback(endCat);
+      }
+      if (column === 'doing') {
+        returnColumn = 'QA'
+      }
       const timer = setTimeout(() => {
-        columnRef.current = column;
+        columnRef.current = returnColumn;
       }, 5000)
 
       return () => clearTimeout(timer)
