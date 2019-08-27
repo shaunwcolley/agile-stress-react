@@ -8,7 +8,7 @@ interface IProps {
   dispatch: any
 }
 
-const Header: React.FC<IProps> = (props) => {
+const Header: React.FC<IProps> = React.memo(props => {
 
   const { state } = props;
   const { dispatch } = props;
@@ -67,6 +67,6 @@ const Header: React.FC<IProps> = (props) => {
   }
   return (<React.Fragment>{header}</React.Fragment>)
 
-}
+})
 
 export default Header;

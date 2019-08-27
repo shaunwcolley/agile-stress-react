@@ -12,7 +12,7 @@ interface IProps {
   index: number,
 }
 
-const TicketPiece: React.FC<IProps> = props => {
+const TicketPiece: React.FC<IProps> = React.memo(props => {
   const { state, columnName, task, endColumn, drag, index } = props;
   const { title, story: { color } } = task;
   let columnRef = React.useRef('...');
@@ -20,8 +20,12 @@ const TicketPiece: React.FC<IProps> = props => {
   React.useEffect(() => {
     if(!state.pause && state.timer > 0){
       const timer = setTimeout(() => {
-        columnRef.current = endColumn;
-      }, 5000)
+        if (columnName === 'qa') {
+          columnRef.current = qaColumnResolve();
+        } else {
+          columnRef.current = endColumn;
+        }
+      }, 2500)
 
       return () => clearTimeout(timer)
     }
@@ -34,6 +38,6 @@ const TicketPiece: React.FC<IProps> = props => {
             <div>{title}</div>
             <div>{columnRef.current}</div>
           </div>
-}
+})
 
 export default TicketPiece;

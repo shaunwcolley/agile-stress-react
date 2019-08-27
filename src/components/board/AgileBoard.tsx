@@ -57,12 +57,9 @@ const AgileBoard: React.FC<IProps> = (props) => {
 
     //sets state with updated score and time
     if(dropCat === endCat){
-      console.log('ADD_POINTS')
       dispatch({ type: actionTypes.ADD_POINTS })
     }
     else {
-      console.log(`dropCat: ${dropCat} ?= endCat: ${endCat}`)
-      console.log('SUB_POINTS')
       dispatch({ type: actionTypes.SUB_POINTS })
     }
 
@@ -85,13 +82,14 @@ const AgileBoard: React.FC<IProps> = (props) => {
   let done = taskCreate('done', board.done, onDragStart, state)
 
   React.useEffect(() => {
+    //working here to sort out the timer issue of gettig a task after amount of time.
     const timer = setTimeout(()=> {
       addRandomTask(boardComponents, labelChoices, board, setBoard)
-    }, 3000)
+    }, 5000)
     return () => clearTimeout(timer)
     // Eslint disable, because code needs to not include dependency as second argument to only update once
     // eslint-disable-next-line
-  }, [])
+  }, [board])
 
   return (
     <React.Fragment>

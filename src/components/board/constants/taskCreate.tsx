@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { qaColumnResolve } from './qaColumnResolve';
 import TicketPiece from '../TicketPiece';
 import { Label, Ticket, State } from '../../types';
 
@@ -21,8 +20,7 @@ export const taskCreate = (columnName: string, column: string[] | any, drag: any
   }
   if(columnName === 'qa') {
     return column.map((task: Ticket | any, index: number) => {
-      const endColumn = qaColumnResolve();
-      return  <TicketPiece state={state} key={index} index={index} task={task} columnName={columnName} endColumn={endColumn} drag={drag} />
+      return  <TicketPiece state={state} key={index} index={index} task={task} columnName={columnName} endColumn='...' drag={drag} />
     })
   }
   return column.map((task: Ticket | any, index: number) => {
