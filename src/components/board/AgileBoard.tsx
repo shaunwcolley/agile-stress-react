@@ -36,7 +36,7 @@ const AgileBoard: React.FC<IProps> = (props) => {
       e.dataTransfer.setData('endCat', endCat)
     }
   }
-  
+
   const onDragOver = (e: any) => {
       e.preventDefault()
   }
@@ -81,7 +81,7 @@ const AgileBoard: React.FC<IProps> = (props) => {
   let doing = taskCreate('doing', board.doing, onDragStart, state)
   let qa = taskCreate('qa', board.qa, onDragStart, state)
   let done = taskCreate('done', board.done, onDragStart, state)
-
+  
   useInterval(() => {
     addRandomTask(boardComponents, labelChoices, board, setBoard)
   }, 4000)

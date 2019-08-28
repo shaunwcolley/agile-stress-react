@@ -12,9 +12,11 @@ import reducer from '../../state/store/reducer';
 
 
 let initialState: State = {
-  timer: 100,
-  score: 950,
+  timer: 5,
+  score: 0,
+  start: true,
   pause: true,
+  gameOver: false,
   countSpeed: 1
 }
 
@@ -25,7 +27,7 @@ const BaseLayout: React.FC<{}> = (props) => {
   return (
     <div className="base-body">
       <Header state={state} dispatch={dispatch} />
-      {!state.pause ? <AgileBoard state={state} dispatch={dispatch}/> : <Menu dispatch={dispatch} />}
+      {!state.pause ? <AgileBoard state={state} dispatch={dispatch}/> : <Menu state={state} dispatch={dispatch} />}
     </div>
   )
 }
