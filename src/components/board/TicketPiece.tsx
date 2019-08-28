@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { qaColumnResolve } from './constants/qaColumnResolve';
+import { useTimeout } from './constants/useTimeout.js'
 
 import { State, Ticket } from '../types';
 
@@ -17,21 +18,15 @@ const TicketPiece: React.FC<IProps> = React.memo(props => {
   const { title, story: { color } } = task;
   let columnRef = React.useRef('...');
 
-  React.useEffect(() => {
-    if(!state.pause && state.timer > 0){
-      const timer = setTimeout(() => {
-        if (columnName === 'qa') {
-          columnRef.current = qaColumnResolve();
-        } else {
-          columnRef.current = endColumn;
-        }
-      }, 2500)
-
-      return () => clearTimeout(timer)
+  useTimeout(() => {
+    if(!state.pause && state.timer > 0) {
+      if(columnName === 'qa') {
+        columnRef.current = qaColumnResolve();
+      } else {
+        columnRef.current = endColumn;
+      }
     }
-    // Eslint disable, because code needs to not include dependency as second argument to only update once
-    // eslint-disable-next-line
-  }, [])
+  }, 2500)
 
   return  <div className="ticket" key={index} draggable onDragStart={(e) => drag(e, columnName, columnRef.current, index)}>
             <div className="label" style={color}></div>

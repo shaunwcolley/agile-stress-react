@@ -5,6 +5,7 @@ import * as boardComponents from './constants/boardComponents';
 import { storyComposition } from './constants/storyComposition';
 import { addRandomTask } from './constants/addRandomTask';
 import { taskCreate } from './constants/taskCreate';
+import { useInterval } from './constants/useInterval.js'
 import * as actionTypes from '../../state/actions/actionTypes';
 
 interface IProps {
@@ -35,7 +36,7 @@ const AgileBoard: React.FC<IProps> = (props) => {
       e.dataTransfer.setData('endCat', endCat)
     }
   }
-
+  
   const onDragOver = (e: any) => {
       e.preventDefault()
   }
@@ -81,15 +82,9 @@ const AgileBoard: React.FC<IProps> = (props) => {
   let qa = taskCreate('qa', board.qa, onDragStart, state)
   let done = taskCreate('done', board.done, onDragStart, state)
 
-  React.useEffect(() => {
-    //working here to sort out the timer issue of gettig a task after amount of time.
-    const timer = setTimeout(()=> {
-      addRandomTask(boardComponents, labelChoices, board, setBoard)
-    }, 5000)
-    return () => clearTimeout(timer)
-    // Eslint disable, because code needs to not include dependency as second argument to only update once
-    // eslint-disable-next-line
-  }, [board])
+  useInterval(() => {
+    addRandomTask(boardComponents, labelChoices, board, setBoard)
+  }, 4000)
 
   return (
     <React.Fragment>

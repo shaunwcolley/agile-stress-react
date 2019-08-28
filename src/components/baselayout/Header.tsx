@@ -1,6 +1,7 @@
 import * as React from 'react';
 import './Header.css';
-import * as actionTypes from '../../state/actions/actionTypes'
+import * as actionTypes from '../../state/actions/actionTypes';
+import { useInterval } from '../board/constants/useInterval.js';
 import { State } from '../types'
 
 interface IProps {
@@ -13,16 +14,15 @@ const Header: React.FC<IProps> = React.memo(props => {
   const { state } = props;
   const { dispatch } = props;
 
-  React.useEffect(() => {
-    if(!state.pause) {
-      if(state.timer > 0) {
-        const timer = setInterval(() => {
-          dispatch({type: actionTypes.COUNT_DOWN })
-        }, 1000)
-        return () => clearInterval(timer)
-      }
+
+  if(!state.pause) {
+    if(state.timer > 0) {
+      useInterval(() => {
+        dispatch({type: actionTypes.COUNT_DOWN })
+      }, 1000)
     }
-  }, [state, dispatch])
+  }
+
 
   const handleMenuClick = () => {
     dispatch({ type: actionTypes.GAME_PAUSE })
