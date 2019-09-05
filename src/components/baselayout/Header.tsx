@@ -30,7 +30,7 @@ const Header: React.FC<IProps> = React.memo(props => {
   const handleMenuClick = () => {
     dispatch({ type: actionTypes.GAME_PAUSE })
   }
-
+  let displayTimer = Math.floor(state.timer)
   const header = (
     <React.Fragment>
     <div className="top-bar">
@@ -52,7 +52,7 @@ const Header: React.FC<IProps> = React.memo(props => {
         Score: {state.score}
       </p>
       <p className="timer">
-        Timer: {state.timer}
+        Timer: {displayTimer}
       </p>
     </div>
     </React.Fragment>

@@ -10,24 +10,14 @@ import * as actionTypes from '../../state/actions/actionTypes';
 
 interface IProps {
   state: State,
-  dispatch: any
-}
-
-let initialBoard: { [key: string]: Ticket[] } = {
-  stories: [],
-  todo: [
-    { title: 'make login', story: { name: 'register', color: {backgroundColor: '#1650C0'} }},
-    { title: 'login styling', story: { name: 'register', color: {backgroundColor: '#1650C0'} }}
-  ],
-  doing: [],
-  qa: [],
-  done: []
+  dispatch: any,
+  board: { [key: string]: Ticket[] },
+  setBoard: any,
 }
 
 const AgileBoard: React.FC<IProps> = (props) => {
 
-  const { state, dispatch } = props;
-  const [board, setBoard] = React.useState(initialBoard);
+  const { state, dispatch, board, setBoard } = props;
 
   const onDragStart = (e: any, startCat: string, endCat: string, key: number) => {
     e.dataTransfer.setData('startCat', startCat)
@@ -81,11 +71,15 @@ const AgileBoard: React.FC<IProps> = (props) => {
   let doing = taskCreate('doing', board.doing, onDragStart, state)
   let qa = taskCreate('qa', board.qa, onDragStart, state)
   let done = taskCreate('done', board.done, onDragStart, state)
-  
+
   useInterval(() => {
     addRandomTask(boardComponents, labelChoices, board, setBoard)
   }, 4000)
 
+  if(state.timer <= 0) {
+    dispatch({ type: actionTypes.GAME_OVER })
+  }
+  
   return (
     <React.Fragment>
     <div className="agile-board">

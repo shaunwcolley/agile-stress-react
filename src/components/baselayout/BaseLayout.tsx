@@ -4,7 +4,7 @@ import AgileBoard from '../board/AgileBoard';
 // import Footer from './Footer';
 import Menu from '../menu/Menu';
 import './Header.css'
-import { State } from '../types'
+import { State, Ticket } from '../types'
 
 import reducer from '../../state/store/reducer';
 
@@ -12,7 +12,7 @@ import reducer from '../../state/store/reducer';
 
 
 let initialState: State = {
-  timer: 5,
+  timer: 2,
   score: 0,
   start: true,
   pause: true,
@@ -20,14 +20,40 @@ let initialState: State = {
   countSpeed: 1
 }
 
+let initialBoard: { [key: string]: Ticket[] } = {
+  stories: [],
+  todo: [
+    { title: 'make login', story: { name: 'register', color: {backgroundColor: '#1650C0'} }},
+    { title: 'login styling', story: { name: 'register', color: {backgroundColor: '#1650C0'} }}
+  ],
+  doing: [],
+  qa: [],
+  done: []
+}
+
 const BaseLayout: React.FC<{}> = (props) => {
 
   const [state, dispatch] = React.useReducer(reducer, initialState)
+  const [board, setBoard] = React.useState(initialBoard);
+
+  React.useEffect(() => {
+    setBoard({
+      stories: [],
+      todo: [
+        { title: 'make login', story: { name: 'register', color: {backgroundColor: '#1650C0'} }},
+        { title: 'login styling', story: { name: 'register', color: {backgroundColor: '#1650C0'} }}
+      ],
+      doing: [],
+      qa: [],
+      done: []
+    })
+  }, [state.gameOver])
+
 
   return (
     <div className="base-body">
       <Header state={state} dispatch={dispatch} />
-      {!state.pause ? <AgileBoard state={state} dispatch={dispatch}/> : <Menu state={state} dispatch={dispatch} />}
+      {!state.pause ? <AgileBoard state={state} dispatch={dispatch} board={board} setBoard={setBoard}/> : <Menu state={state} dispatch={dispatch} />}
     </div>
   )
 }

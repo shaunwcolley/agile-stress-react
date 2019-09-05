@@ -9,7 +9,7 @@ function reducer(state: State , action: Action) {
     case actionTypes.COUNT_DOWN:
       return { ...state, timer: state.timer > 0 ? state.timer - state.countSpeed : 0, gameOver: state.timer <=0 ? true : false };
     case actionTypes.ADD_POINTS:
-      return { ...state, timer: state.timer + 3, score: state.score + 50 }
+      return { ...state, timer: state.timer + 1.5, score: state.score + 50 }
     case actionTypes.SUB_POINTS:
       return { ...state, timer: state.timer - 20, score: state.score - 25 }
     case actionTypes.GAME_START:
@@ -19,11 +19,11 @@ function reducer(state: State , action: Action) {
     case actionTypes.GAME_OVER:
       return { ...state, pause: true, gameOver: true, }
     case actionTypes.NEW_GAME:
-      return { ...state, start: true, gameOver: false, }
+      return { ...state, start: true, gameOver: false, timer: 100, score: 0 }
     case actionTypes.CHANGE_SPEED:
       return { ...state, countSpeed: action.payload}
     default:
-      throw new Error();
+      return { ...state };
   }
 }
 

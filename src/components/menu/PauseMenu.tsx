@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { State } from '../types'
+import { State } from '../types';
+import * as actionTypes from '../../state/actions/actionTypes';
 
 interface IProps {
   state: State,
@@ -7,9 +8,16 @@ interface IProps {
 }
 
 const PauseMenu: React.FC<IProps> = props => {
+  const { dispatch } = props;
+
+  const handleResumeClick = () => {
+    dispatch({ type: actionTypes.GAME_PAUSE })
+  };
+
   return (
     <div>
       Paused!
+      <button onClick={() => handleResumeClick()}>Resume</button>
     </div>
   )
 }
