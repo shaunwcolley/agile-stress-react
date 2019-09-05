@@ -23,6 +23,16 @@ export const taskCreate = (columnName: string, column: string[] | any, drag: any
       return  <TicketPiece state={state} key={index} index={index} task={task} columnName={columnName} endColumn='...' drag={drag} />
     })
   }
+  if(columnName === 'done') {
+    return column.map((task: Ticket | any, index: number) => {
+      const { story: {color} } = task
+      return  <div className="ticket" key={index}>
+                <div className="label" style={color}></div>
+                <div>{task.title}</div>
+              </div>
+    })
+  }
+  //creates to do tickets
   return column.map((task: Ticket | any, index: number) => {
     const { story: {color} } = task
     return  <div className="ticket" key={index} draggable onDragStart={(e) => drag(e, columnName, 'doing', index)}>

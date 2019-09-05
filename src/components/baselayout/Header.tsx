@@ -14,20 +14,23 @@ const Header: React.FC<IProps> = React.memo(props => {
   const { state } = props;
   const { dispatch } = props;
 
+  let timer;
 
-  if(!state.pause) {
-    if(state.timer > 0) {
-      useInterval(() => {
-        dispatch({type: actionTypes.COUNT_DOWN })
-      }, 1000)
-    }
+  if(!state.pause && state.timer > 0) {
+    timer = 1000
+  } else {
+    timer = null
   }
+  useInterval(() => {
+    dispatch({type: actionTypes.COUNT_DOWN })
+  }, timer)
+
 
 
   const handleMenuClick = () => {
     dispatch({ type: actionTypes.GAME_PAUSE })
   }
-
+  let displayTimer = Math.floor(state.timer)
   const header = (
     <React.Fragment>
     <div className="top-bar">
@@ -49,22 +52,12 @@ const Header: React.FC<IProps> = React.memo(props => {
         Score: {state.score}
       </p>
       <p className="timer">
-        Timer: {state.timer}
+        Timer: {displayTimer}
       </p>
     </div>
     </React.Fragment>
   )
 
-  if(state.timer === 0) {
-    return (
-      <div>
-        {header}
-        <div>
-          GAME OVER!
-        </div>
-      </div>
-    )
-  }
   return (<React.Fragment>{header}</React.Fragment>)
 
 })
