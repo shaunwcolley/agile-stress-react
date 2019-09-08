@@ -1,6 +1,6 @@
 export const addRandomTask = (components: any, labels: any, state: any, setState: any) => {
   const { choices } = components;
-  const titleMax = choices.length-1;
+  const titleMax = choices.length;
   const randomTitle = Math.floor(Math.random() * titleMax);
   const title = choices[randomTitle];
   const labelMax = labels.length;

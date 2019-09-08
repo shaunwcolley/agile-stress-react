@@ -74,12 +74,12 @@ const AgileBoard: React.FC<IProps> = (props) => {
 
   useInterval(() => {
     addRandomTask(boardComponents, labelChoices, board, setBoard)
-  }, 4000)
+  }, 5000)
 
   if(state.timer <= 0) {
     dispatch({ type: actionTypes.GAME_OVER })
   }
-  
+
   return (
     <React.Fragment>
     <div className="agile-board">
