@@ -12,7 +12,7 @@ import reducer from '../../state/store/reducer';
 
 
 let initialState: State = {
-  timer: 2,
+  timer: 60,
   score: 0,
   start: true,
   pause: true,
