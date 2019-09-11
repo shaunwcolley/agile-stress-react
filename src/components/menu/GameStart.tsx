@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { State } from '../types'
 import * as actionTypes from '../../state/actions/actionTypes';
+import PageZero from './pages/PageZero';
 import PageOne from './pages/PageOne';
 import PageTwo from './pages/PageTwo';
 
@@ -10,7 +11,7 @@ interface IProps {
 }
 
 let initialPage: { [key: string]: number } = {
-  num: 1
+  num: 0
 }
 
 const GameStart: React.FC<IProps> = props => {
@@ -30,8 +31,10 @@ const GameStart: React.FC<IProps> = props => {
   }
 
   switch(page.num) {
+    case 0:
+      return <PageZero handleNextClick={handleNextClick} handleStartClick={handleStartClick} />
     case 1:
-      return <PageOne handleStartClick={handleStartClick} handleNextClick={handleNextClick}/>
+      return <PageOne handleNextClick={handleNextClick}/>
     case 2:
       return <PageTwo handleNextClick={handleNextClick} handlePrevClick={handlePrevClick} />
     default:

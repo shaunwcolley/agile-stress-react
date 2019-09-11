@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 interface IProps {
-  handleStartClick: () => void,
   handleNextClick: () => void,
 }
 
@@ -9,12 +8,11 @@ const PageOne: React.FC<IProps> = props => {
 
   return (
     <div>
-      <p>
-        Welcome to Agile Stress! To begin Click on start below.
-      </p>
-      <button onClick={() => props.handleStartClick()}>Start</button>
+      <h3>
+        Welcome to Agile Stress, Steve!
+      </h3>
       <h4>
-        How to play
+        Let's discuss how to play.
       </h4>
       <p>
         Once the game starts, move the tickets to their appropriate columns. Pick any task from 'to-do' and move it to 'doing', when task it complete it will tell you to move the task to the next column.
