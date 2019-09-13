@@ -37,7 +37,7 @@ const PageZero: React.FC<IProps> = props => {
     return (
       <div>
         <h4>
-          Okay, your name is Steve right?
+          Okay, your name is Stan right?
         </h4>
         <button onClick={() => handleSecondQuestionClick()}>No!</button>
         <button onClick={() => handleSecondQuestionClick()}>Nope.</button>
@@ -47,7 +47,7 @@ const PageZero: React.FC<IProps> = props => {
   return (
     <div>
       <p>
-      Okay Steve, I went ahead and put an S logo in the top right corner as your avatar.
+      Okay Stan, I went ahead and put an S logo in the top right corner as your avatar.
       Pretty cool, right?
       I guess I'm psychic.
       Anyway do you already know how to play or do you need some direction?

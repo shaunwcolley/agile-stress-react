@@ -19,7 +19,7 @@ function reducer(state: State , action: Action) {
     case actionTypes.GAME_OVER:
       return { ...state, pause: true, gameOver: true, }
     case actionTypes.NEW_GAME:
-      return { ...state, start: true, gameOver: false, timer: 100, score: 0 }
+      return { ...state, start: true, gameOver: false, timer: 60, score: 0 }
     case actionTypes.CHANGE_SPEED:
       return { ...state, countSpeed: action.payload}
     default:

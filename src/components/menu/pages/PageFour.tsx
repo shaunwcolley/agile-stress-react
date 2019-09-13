@@ -5,11 +5,11 @@ interface IProps {
   handlePrevClick: () => void,
 }
 
-const PageTwo: React.FC<IProps> = props => {
+const PageFour: React.FC<IProps> = props => {
   return (
     <div>
       <p>
-        Pick any task from 'to-do' that you want to work on and move it to 'doing', when I've decided you completed the taks, I will tell you to move the task to the next column.
+        Once I have checked a task for Quality Assurance (QA) I will decide if a task must be worked on some more or if it is completely completed.
       </p>
       <button onClick={() => props.handlePrevClick()}>Prev</button>
       <button onClick={() => props.handleNextClick()}>Next</button>
@@ -17,4 +17,4 @@ const PageTwo: React.FC<IProps> = props => {
   )
 }
 
-export default PageTwo;
+export default PageFour;

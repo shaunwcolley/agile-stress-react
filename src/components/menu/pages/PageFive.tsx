@@ -5,11 +5,11 @@ interface IProps {
   handlePrevClick: () => void,
 }
 
-const PageTwo: React.FC<IProps> = props => {
+const PageFive: React.FC<IProps> = props => {
   return (
     <div>
       <p>
-        Pick any task from 'to-do' that you want to work on and move it to 'doing', when I've decided you completed the taks, I will tell you to move the task to the next column.
+        As you do well your score will go up. Because you are such a great worker, I will give you more work by adding more user stories!
       </p>
       <button onClick={() => props.handlePrevClick()}>Prev</button>
       <button onClick={() => props.handleNextClick()}>Next</button>
@@ -17,4 +17,4 @@ const PageTwo: React.FC<IProps> = props => {
   )
 }
 
-export default PageTwo;
+export default PageFive;
