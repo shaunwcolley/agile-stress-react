@@ -9,7 +9,7 @@ const PageOne: React.FC<IProps> = props => {
   return (
     <div>
       <h3>
-        Welcome to Agile Stress, Stan!
+        Welcome to Agile Stress, Sam!
       </h3>
       <h4>
         Let me teach you how to play.

@@ -8,6 +8,7 @@ import PageThree from './pages/PageThree';
 import PageFour from './pages/PageFour';
 import PageFive from './pages/PageFive';
 import PageSix from './pages/PageSix';
+import PageSeven from './pages/PageSeven';
 
 interface IProps {
   state: State,
@@ -48,7 +49,9 @@ const GameStart: React.FC<IProps> = props => {
     case 5:
       return <PageFive handleNextClick={handleNextClick} handlePrevClick={handlePrevClick} />
     case 6:
-      return <PageSix handleStartClick={handleStartClick} handlePrevClick={handlePrevClick} />
+      return <PageSix handleNextClick={handleNextClick} handlePrevClick={handlePrevClick} />
+    case 7:
+      return <PageSeven handleStartClick={handleStartClick} handlePrevClick={handlePrevClick} />
     default:
       return <div>No Pages</div>
   }
