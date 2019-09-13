@@ -65,7 +65,7 @@ const PageZero: React.FC<IProps> = props => {
   }, timer.countFive)
   React.useEffect(() => {
     if(status.questionAnswered) {
-      setTimer({ countOne: 1000, countTwo: 3000, countThree: 5000, countFour: 7000, countFive: 8000,  })
+      setTimer({ countOne: 1000, countTwo: 3000, countThree: 5000, countFour: 7000, countFive: 7500,  })
     }
   }, [status])
 
@@ -105,16 +105,6 @@ const PageZero: React.FC<IProps> = props => {
         {status.answer}
       </p>
       {status.conversation}
-      <p>
-
-      </p>
-      <p>
-
-      </p>
-      <p>
-
-      </p>
-
     </div>
   )
 
