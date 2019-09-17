@@ -65,17 +65,17 @@ const PageZero: React.FC<IProps> = props => {
   }, timer.countFive)
   React.useEffect(() => {
     if(status.questionAnswered) {
-      setTimer({ countOne: 1000, countTwo: 3000, countThree: 5000, countFour: 7000, countFive: 7500,  })
+      setTimer({ countOne: 2500, countTwo: 4500, countThree: 6500, countFour: 8500, countFive: 9000,  })
     }
   }, [status])
 
   if (!status.nameEntered) {
     return (
-      <div>
+      <div className="page-div">
         <h4>
           Hello, I am Agile Bot. Please enter your name to start:
         </h4>
-          <input type="text" placeholder="name"></input>
+        <input type="text" placeholder="name"></input>
         <button onClick={() => handleSubmitNameClick()}>Submit Name to Agile Bot.</button>
       </div>
     )
