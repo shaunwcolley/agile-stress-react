@@ -15,8 +15,8 @@ const PauseMenu: React.FC<IProps> = props => {
   };
 
   return (
-    <div>
-      Paused!
+    <div className="page-div pause">
+      <h3>Paused!</h3>
       <button onClick={() => handleResumeClick()}>Resume</button>
     </div>
   )

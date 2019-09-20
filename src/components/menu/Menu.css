@@ -60,3 +60,15 @@
   display: flex;
   flex-direction: column;
 }
+
+.page-div button {
+  margin-top: .5rem;
+}
+
+.pause {
+  align-items: center;
+}
+
+.pause button {
+  width: 100%;
+}
