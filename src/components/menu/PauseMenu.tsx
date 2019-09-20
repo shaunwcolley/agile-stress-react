@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { State } from '../types';
 import * as actionTypes from '../../state/actions/actionTypes';
+import SmallScreenMenu from './SmallScreenMenu';
 
 interface IProps {
   state: State,
@@ -15,10 +16,13 @@ const PauseMenu: React.FC<IProps> = props => {
   };
 
   return (
+    <React.Fragment>
     <div className="page-div pause">
       <h3>Paused!</h3>
       <button onClick={() => handleResumeClick()}>Resume</button>
     </div>
+    <SmallScreenMenu />
+    </React.Fragment>
   )
 }
 

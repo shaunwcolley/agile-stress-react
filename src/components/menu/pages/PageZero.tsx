@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { useTimeout } from '../../board/constants/useTimeout.js'
+import { useTimeout } from '../../board/constants/useTimeout.js';
+import SmallScreenMenu from '../SmallScreenMenu';
 
 interface IProps {
   handleNextClick: () => void,
@@ -71,6 +72,7 @@ const PageZero: React.FC<IProps> = props => {
 
   if (!status.nameEntered) {
     return (
+      <React.Fragment>
       <div className="page-div">
         <h4>
           Hello, I am Agile Bot. Please enter your name to start:
@@ -79,6 +81,8 @@ const PageZero: React.FC<IProps> = props => {
         <button onClick={() => handleSubmitNameClick()}>Submit Name to Agile Bot.</button>
         <button onClick={() => props.handleStartClick()}>Skip the introductions and start a New Game</button>
       </div>
+      <SmallScreenMenu />
+      </React.Fragment>
     )
   }
 
