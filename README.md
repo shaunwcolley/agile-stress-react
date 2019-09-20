@@ -34,4 +34,4 @@ Agile Stress was built by:
 
 Agile Stress was built using [React](https://github.com/facebook/create-react-app) Hooks and TypeScript.
 
-Checkout the [custom declarative hook](https://overreacted.io/making-setinterval-declarative-with-react-hooks/) for using timeout and interval and why it is important to do set them up this way.
+Checkout the [custom declarative hook](https://overreacted.io/making-setinterval-declarative-with-react-hooks/) for using timeout and interval and why it is important to set them up as custom declarative hooks. If you do not use `React.useRef()` the various timeouts can be fired infinitely and interfer with other timers. Agile Stress utilized three different timings: the general game clock, how frequently a random task is added, and a timer for each ticket to tell you which column to move it to.
