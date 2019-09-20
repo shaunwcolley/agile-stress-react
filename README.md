@@ -1,6 +1,6 @@
 # Agile Stress
 
-Live link: agile-stress.herokuapp.com
+Live link: [agile-stress.herokuapp.com](agile-stress.herokuapp.com)
 
 [Agile Stress](agile-stress.herokuapp.com) is an arcade game where you accumulate points for moving agile tickets to the appropriate columns under a certain amount of time.
 
@@ -28,7 +28,7 @@ Try to beat your high score!
 
 Agile Stress was built by:
 
-[Shaun Colley](https://github.com/shaunwcolley)
+   - [Shaun Colley](https://github.com/shaunwcolley)
 
 ## Tools
 
