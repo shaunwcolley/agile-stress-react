@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
+
 .agile-board {
   display: flex;
   justify-content: space-between;
@@ -38,6 +40,11 @@
 }
 
 .ticket {
+  font-family: 'Press Start 2P';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 10px;
   display: flex;
   flex-direction: column;
   margin-bottom: 24px;
@@ -56,4 +63,12 @@
   width: 50px;
   height: 20px;
   border-radius: 5px;
+}
+
+.task-name {
+  padding: .5rem;
+}
+
+.move-location {
+  padding: .5rem;
 }

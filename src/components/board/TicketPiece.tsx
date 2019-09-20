@@ -17,21 +17,31 @@ const TicketPiece: React.FC<IProps> = React.memo(props => {
   const { state, columnName, task, endColumn, drag, index } = props;
   const { title, story: { color } } = task;
   let columnRef = React.useRef('...');
+  let nameRef = React.useRef('...');
 
   useTimeout(() => {
     if(!state.pause && state.timer > 0) {
       if(columnName === 'qa') {
-        columnRef.current = qaColumnResolve();
+        let column = qaColumnResolve();
+        columnRef.current = column;
+        if (column === "doing") {
+          nameRef.current = 'Doing';
+        } else if (column === 'done') {
+          nameRef.current = "Done";
+        }
       } else {
         columnRef.current = endColumn;
+        nameRef.current = "QA"
       }
     }
   }, 2500)
 
+
+
   return  <div className="ticket" key={index} draggable onDragStart={(e) => drag(e, columnName, columnRef.current, index)}>
             <div className="label" style={color}></div>
-            <div>{title}</div>
-            <div>{columnRef.current}</div>
+            <p className="task-name">{title}</p>
+            <p className="move-location">Move to: {nameRef.current}</p>
           </div>
 })
 

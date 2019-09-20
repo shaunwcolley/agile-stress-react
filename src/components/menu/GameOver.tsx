@@ -16,9 +16,9 @@ const GameOver: React.FC<IProps> = props => {
 
   return (
     <div>
-      <h1>
+      <h2>
         Game Over!
-      </h1>
+      </h2>
       <p>
         Your Score: {state.score}
       </p>

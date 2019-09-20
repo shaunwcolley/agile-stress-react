@@ -77,6 +77,7 @@ const PageZero: React.FC<IProps> = props => {
         </h4>
         <input type="text" placeholder="name"></input>
         <button onClick={() => handleSubmitNameClick()}>Submit Name to Agile Bot.</button>
+        <button onClick={() => props.handleStartClick()}>Skip the introductions and start a New Game</button>
       </div>
     )
   }

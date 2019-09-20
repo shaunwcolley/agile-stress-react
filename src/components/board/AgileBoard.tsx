@@ -66,6 +66,8 @@ const AgileBoard: React.FC<IProps> = (props) => {
   const { labels } = boardComponents
   const labelChoices = storyComposition(score,labels)
 
+  console.log(labelChoices)
+
   let storiesDisplay = taskCreate('stories', labelChoices, onDragStart, state)
   let todo = taskCreate('todo', board.todo, onDragStart, state)
   let doing = taskCreate('doing', board.doing, onDragStart, state)
@@ -74,7 +76,7 @@ const AgileBoard: React.FC<IProps> = (props) => {
 
   useInterval(() => {
     addRandomTask(boardComponents, labelChoices, board, setBoard)
-  }, 5000)
+  }, 5500)
 
   if(state.timer <= 0) {
     dispatch({ type: actionTypes.GAME_OVER })

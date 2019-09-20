@@ -13,7 +13,7 @@ import reducer from '../../state/store/reducer';
 
 let initialState: State = {
   timer: 60,
-  score: 0,
+  score: 3000,
   start: true,
   pause: true,
   gameOver: false,
@@ -23,8 +23,8 @@ let initialState: State = {
 let initialBoard: { [key: string]: Ticket[] } = {
   stories: [],
   todo: [
-    { title: 'make login', story: { name: 'register', color: {backgroundColor: '#1650C0'} }},
-    { title: 'login styling', story: { name: 'register', color: {backgroundColor: '#1650C0'} }}
+    { title: 'Make Login', story: { name: 'register', color: {backgroundColor: '#1650C0'} }},
+    { title: 'Login Styling', story: { name: 'register', color: {backgroundColor: '#1650C0'} }}
   ],
   doing: [],
   qa: [],
@@ -40,8 +40,8 @@ const BaseLayout: React.FC<{}> = (props) => {
     setBoard({
       stories: [],
       todo: [
-        { title: 'make login', story: { name: 'register', color: {backgroundColor: '#1650C0'} }},
-        { title: 'login styling', story: { name: 'register', color: {backgroundColor: '#1650C0'} }}
+        { title: 'Make Login', story: { name: 'register', color: {backgroundColor: '#1650C0'} }},
+        { title: 'Login Styling', story: { name: 'register', color: {backgroundColor: '#1650C0'} }}
       ],
       doing: [],
       qa: [],

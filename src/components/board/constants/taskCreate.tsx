@@ -9,7 +9,7 @@ export const taskCreate = (columnName: string, column: string[] | any, drag: any
       const { name, color } = story;
       return  <div className="ticket" key={index}>
                 <div className="label" style={color}></div>
-                <div>{name}</div>
+                <div className="task-name">{name}</div>
               </div>
     })
   }
@@ -28,7 +28,7 @@ export const taskCreate = (columnName: string, column: string[] | any, drag: any
       const { story: {color} } = task
       return  <div className="ticket" key={index}>
                 <div className="label" style={color}></div>
-                <div>{task.title}</div>
+                <div className="task-name">{task.title}</div>
               </div>
     })
   }
@@ -37,7 +37,7 @@ export const taskCreate = (columnName: string, column: string[] | any, drag: any
     const { story: {color} } = task
     return  <div className="ticket" key={index} draggable onDragStart={(e) => drag(e, columnName, 'doing', index)}>
               <div className="label" style={color}></div>
-              <div>{task.title}</div>
+              <div className="task-name">{task.title}</div>
             </div>
   })
 }
