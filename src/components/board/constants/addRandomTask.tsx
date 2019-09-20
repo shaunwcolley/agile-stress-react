@@ -3,6 +3,7 @@ export const addRandomTask = (components: any, labels: any, state: any, setState
   const titleMax = choices.length;
   const randomTitle = Math.floor(Math.random() * titleMax);
   const title = choices[randomTitle];
+  // need to move to a function
   if (score < 500) {
     labels = labels.slice(0,1)
   } else if (score >= 500 && score < 1250) {
