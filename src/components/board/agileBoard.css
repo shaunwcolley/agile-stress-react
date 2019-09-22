@@ -18,9 +18,8 @@
 }
 
 .agile-column--heading {
+  position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
   font-family: 'Press Start 2P';
   font-style: normal;
   font-weight: normal;
@@ -53,6 +52,7 @@
   background: #FFFFFF;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
+  cursor: grab;
 }
 
 .label {
@@ -71,4 +71,11 @@
 
 .move-location {
   padding: .5rem;
+}
+
+.click-dots {
+  position: absolute;
+  right: 2%;
+  top: 5%;
+  cursor: pointer;
 }
