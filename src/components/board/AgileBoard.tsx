@@ -85,7 +85,7 @@ const AgileBoard: React.FC<IProps> = (props) => {
     <div className="agile-board">
       <div className="agile-column">
         <div className="agile-column--heading">
-          <h4>User Stories</h4><div className="click-dots">...</div>
+          <h4 className="agile-column--title">User Stories</h4><div className="click-dots">...</div>
         </div>
         <div className="agile-column--tasks">
           {storiesDisplay}
@@ -93,7 +93,7 @@ const AgileBoard: React.FC<IProps> = (props) => {
       </div>
       <div className="agile-column">
         <div className="agile-column--heading">
-          <h4>To-Do</h4><div className="click-dots">...</div>
+          <h4 className="agile-column--title">To-Do</h4><div className="click-dots">...</div>
         </div>
         <div className="agile-column--tasks" onDragOver={(e) => onDragOver(e)} onDrop={(e) => onDrop(e, 'todo')}>
           {todo}
@@ -101,7 +101,7 @@ const AgileBoard: React.FC<IProps> = (props) => {
       </div>
       <div className="agile-column">
         <div className="agile-column--heading">
-          <h4>Doing</h4><div className="click-dots">...</div>
+          <h4 className="agile-column--title">Doing</h4><div className="click-dots">...</div>
         </div>
         <div className="agile-column--tasks"  onDragOver={(e) => onDragOver(e)} onDrop={(e) => onDrop(e, 'doing')}>
           {doing}
@@ -109,7 +109,7 @@ const AgileBoard: React.FC<IProps> = (props) => {
       </div>
       <div className="agile-column">
         <div className="agile-column--heading">
-          <h4>QA</h4><div className="click-dots">...</div>
+          <h4 className="agile-column--title">QA</h4><div className="click-dots">...</div>
         </div>
         <div className="agile-column--tasks" onDragOver={(e) => onDragOver(e)} onDrop={(e) => onDrop(e, 'qa')}>
           {qa}
@@ -117,7 +117,7 @@ const AgileBoard: React.FC<IProps> = (props) => {
       </div>
       <div className="agile-column">
         <div className="agile-column--heading">
-          <h4>Done</h4><div className="click-dots">...</div>
+          <h4 className="agile-column--title">Done</h4><div className="click-dots">...</div>
         </div>
         <div className="agile-column--tasks" onDragOver={(e) => onDragOver(e)} onDrop={(e) => onDrop(e, 'done')}>
           {done}

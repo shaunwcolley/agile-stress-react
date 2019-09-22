@@ -8,12 +8,12 @@ const PageOne: React.FC<IProps> = props => {
 
   return (
     <div>
-      <h3>
+      <p>
         Welcome to Agile Stress, Sam!
-      </h3>
-      <h4>
+      </p>
+      <p>
         Let me teach you how to play.
-      </h4>
+      </p>
       <p>
         I am going to give you several tasks for you to complete for each user story on the left. (Don't worry if they keep repeating, I know you are a good worker!)
       </p>
