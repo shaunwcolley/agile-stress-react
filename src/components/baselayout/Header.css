@@ -43,6 +43,21 @@
   background-color: rgba(18, 140, 89, 0.7);
 }
 
+.audio-box {
+  position: absolute;
+  right: 6rem;
+  cursor: pointer;
+}
+
+.audio-box svg {
+  fill: #FFFFFF;
+  z-index: 2;
+}
+
+.audio-box svg:hover {
+  fill: #128c59b3;
+}
+
 .user-display {
   display: flex;
   align-items: center;
