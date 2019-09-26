@@ -19,6 +19,9 @@ const AgileBoard: React.FC<IProps> = (props) => {
 
   const { state, dispatch, board, setBoard } = props;
 
+  const goodMoveRef: any = React.useRef();
+  const wrongMoveRef: any = React.useRef();
+
   const onDragStart = (e: any, startCat: string, endCat: string, key: number) => {
     e.dataTransfer.setData('startCat', startCat)
     e.dataTransfer.setData('key', key)
@@ -49,9 +52,11 @@ const AgileBoard: React.FC<IProps> = (props) => {
     //sets state with updated score and time
     if(dropCat === endCat){
       dispatch({ type: actionTypes.ADD_POINTS })
+      // goodMoveRef.current.play();
     }
     else {
       dispatch({ type: actionTypes.SUB_POINTS })
+      // wrongMoveRef.current.play();
     }
 
 
@@ -124,6 +129,10 @@ const AgileBoard: React.FC<IProps> = (props) => {
         </div>
       </div>
     </div>
+    <audio ref={goodMoveRef} src={require('../../sounds/good-move.wav')}>
+    </audio>
+    <audio ref={wrongMoveRef} src={require('../../sounds/wrong-move.wav')}>
+    </audio>
     </React.Fragment>
   )
 }

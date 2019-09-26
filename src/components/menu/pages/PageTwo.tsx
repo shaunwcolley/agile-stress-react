@@ -9,7 +9,7 @@ const PageTwo: React.FC<IProps> = props => {
   return (
     <div>
       <p>
-        Pick any task from 'to-do' that you want to work on and move it to 'doing', when I've decided you completed the taks, I will tell you to move the task to the next column.
+        Pick any task from the 'to-do' list that you want to work on and move it to 'doing', when I've decided you completed the task, I will tell you to move the task to the next column.
       </p>
       <button onClick={() => props.handlePrevClick()}>Prev</button>
       <button onClick={() => props.handleNextClick()}>Next</button>
